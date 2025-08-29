@@ -1,13 +1,11 @@
-// // Definir colores y rarezas
-
 export enum CARD_COLORS {
-  BLUE = "azul",
-  GREEN = "verde",
-  BLACK = "negro",
-  RED = "rojo",
-  WHITE = "blanco",
+  BLUE = "blue",
+  GREEN = "green",
+  BLACK = "black",
+  RED = "red",
+  WHITE = "white",
   MULTICOLOR = "multicolor",
-  NO_COLOR = "incoloro",
+  NO_COLOR = "colorless",
 }
 export const DEFAULT_COLORS_LIST: CARD_COLORS[] = [
   CARD_COLORS.BLUE,
@@ -20,10 +18,10 @@ export const DEFAULT_COLORS_LIST: CARD_COLORS[] = [
 ];
 
 export enum CARD_RARITY {
-  COMMON = "comun",
-  UNCOMMON = "infrecuente",
-  RARE = "rara",
-  MITHYC = "mitica",
+  COMMON = "common",
+  UNCOMMON = "uncommon",
+  RARE = "rare",
+  MITHYC = "mithyc",
 }
 
 export const DEFAULT_RARITY_LIST: CARD_RARITY[] = [
@@ -58,21 +56,21 @@ export function checkAndGenerateCard(arr: Booster, rarity: CARD_RARITY) {
 export function generateBooster() {
   const booster: Booster = [];
 
-  // Generar las cartas de forma aleatoria
+  // Generate cards randomly
   for (let i = 0; i < 4; i++) {
-    // Míticas
+    // Mythics
     checkAndGenerateCard(booster, CARD_RARITY.MITHYC);
   }
   for (let i = 0; i < 4; i++) {
-    // Raras
+    // rares
     checkAndGenerateCard(booster, CARD_RARITY.RARE);
   }
   for (let i = 0; i < 3; i++) {
-    // Infrecuentes
+    // uncommons
     checkAndGenerateCard(booster, CARD_RARITY.UNCOMMON);
   }
   for (let i = 0; i < 3; i++) {
-    // Comunes
+    // commons
     checkAndGenerateCard(booster, CARD_RARITY.COMMON);
   }
   return booster;

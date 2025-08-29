@@ -22,6 +22,7 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
   const [generatedBoosters, setGeneratedBoosters] = useState<CubeBooster[]>([]);
   const [currentBoosterIndex, setCurrentBoosterIndex] = useState(0);
   const [cubeStats, setCubeStats] = useState<any>(null);
+  const [showCardNames, setShowCardNames] = useState(false);
 
   // Calculate total boosters
   const totalBoosters = players * boostersPerPlayer;
@@ -156,6 +157,13 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
             </h3>
             <div className="flex items-center gap-2">
               <Button
+                onClick={() => setShowCardNames(!showCardNames)}
+                variant="outline"
+                size="sm"
+              >
+                {showCardNames ? "Hide Names" : "Show Names"}
+              </Button>
+              <Button
                 onClick={() =>
                   setCurrentBoosterIndex(Math.max(0, currentBoosterIndex - 1))
                 }
@@ -192,19 +200,106 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
               Booster {currentBoosterIndex + 1}
             </h4>
             <div className="grid grid-cols-3 gap-2">
-              {generatedBoosters[currentBoosterIndex]?.map((card, idx) => (
-                <div
-                  key={idx}
-                  className="bg-background p-2 rounded border text-xs"
-                >
-                  <div className="font-medium truncate" title={card.name}>
-                    {card.name}
+              {generatedBoosters[currentBoosterIndex]?.map((card, idx) => {
+                const colorName =
+                  card.color === "white"
+                    ? "White"
+                    : card.color === "blue"
+                    ? "Blue"
+                    : card.color === "black"
+                    ? "Black"
+                    : card.color === "red"
+                    ? "Red"
+                    : card.color === "green"
+                    ? "Green"
+                    : card.color === "multicolor"
+                    ? "Multicolor"
+                    : card.color === "colorless"
+                    ? "Colorless"
+                    : card.color;
+
+                const rarityName =
+                  card.rarity === "mithyc"
+                    ? "Mythic"
+                    : card.rarity === "rare"
+                    ? "Rare"
+                    : card.rarity === "uncommon"
+                    ? "Uncommon"
+                    : card.rarity === "common"
+                    ? "Common"
+                    : card.rarity;
+
+                const colorBg =
+                  card.color === "white"
+                    ? "bg-yellow-100 border-yellow-300"
+                    : card.color === "blue"
+                    ? "bg-blue-100 border-blue-300"
+                    : card.color === "black"
+                    ? "bg-gray-100 border-gray-400"
+                    : card.color === "red"
+                    ? "bg-red-100 border-red-300"
+                    : card.color === "green"
+                    ? "bg-green-100 border-green-300"
+                    : card.color === "multicolor"
+                    ? "bg-gradient-to-br from-blue-100 to-red-100 border-purple-300"
+                    : "bg-gray-50 border-gray-200";
+
+                const rarityColor =
+                  card.rarity === "mithyc"
+                    ? "text-orange-600 font-bold"
+                    : card.rarity === "rare"
+                    ? "text-yellow-600 font-semibold"
+                    : card.rarity === "uncommon"
+                    ? "text-gray-600 font-medium"
+                    : "text-gray-500";
+
+                return (
+                  <div
+                    key={idx}
+                    className={`p-3 rounded-lg border-2 text-xs transition-all ${colorBg} ${
+                      !showCardNames
+                        ? "h-20 flex flex-col justify-center items-center"
+                        : ""
+                    }`}
+                    title={
+                      showCardNames
+                        ? card.name
+                        : `${card.name} - ${colorName} ${rarityName}`
+                    }
+                  >
+                    {showCardNames && (
+                      <div
+                        className="font-medium truncate mb-1 text-black text-center"
+                        title={card.name}
+                      >
+                        {card.name}
+                      </div>
+                    )}
+                    <div
+                      className={`text-center ${
+                        showCardNames
+                          ? "text-muted-foreground text-xs"
+                          : "space-y-1"
+                      }`}
+                    >
+                      <div
+                        className={`font-semibold ${rarityColor} ${
+                          !showCardNames ? "text-sm" : ""
+                        }`}
+                      >
+                        {rarityName}
+                      </div>
+                      <div
+                        className={`font-medium ${
+                          !showCardNames ? "text-sm text-gray-700" : ""
+                        }`}
+                      >
+                        {colorName}
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-muted-foreground">
-                    {card.rarity} • {card.color}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -241,19 +336,19 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
                     <tbody>
                       {Object.values(CARD_COLORS).map((color) => {
                         const colorName =
-                          color === "blanco"
+                          color === "white"
                             ? "White"
-                            : color === "azul"
+                            : color === "blue"
                             ? "Blue"
-                            : color === "negro"
+                            : color === "black"
                             ? "Black"
-                            : color === "rojo"
+                            : color === "red"
                             ? "Red"
-                            : color === "verde"
+                            : color === "green"
                             ? "Green"
                             : color === "multicolor"
                             ? "Multicolor"
-                            : color === "incoloro"
+                            : color === "colorless"
                             ? "Colorless"
                             : color;
 
