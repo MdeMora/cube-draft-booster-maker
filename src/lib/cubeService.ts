@@ -251,6 +251,31 @@ export function resetDraftSession(): void {
   currentDraftSession = null;
 }
 
+// Search for cards in the cube list
+export async function searchCards(query: string): Promise<CubeCard[]> {
+  if (!query.trim()) return [];
+  
+  const cubeList = await loadCubeList();
+  const searchTerm = query.toLowerCase().trim();
+  
+  return cubeList.filter(card => 
+    card.name.toLowerCase().includes(searchTerm) ||
+    card.type.toLowerCase().includes(searchTerm) ||
+    card.colorCategory.toLowerCase().includes(searchTerm) ||
+    card.set.toLowerCase().includes(searchTerm)
+  ).sort((a, b) => {
+    // Prioritize exact matches in name
+    const aNameMatch = a.name.toLowerCase().startsWith(searchTerm);
+    const bNameMatch = b.name.toLowerCase().startsWith(searchTerm);
+    
+    if (aNameMatch && !bNameMatch) return -1;
+    if (!aNameMatch && bNameMatch) return 1;
+    
+    // Then sort alphabetically
+    return a.name.localeCompare(b.name);
+  });
+}
+
 // Get cube statistics
 export async function getCubeStatistics() {
   const cubeList = await loadCubeList();

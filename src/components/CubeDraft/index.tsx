@@ -10,6 +10,7 @@ import {
 } from "@/lib/cubeService";
 import CubeBooster from "@/components/CubeBooster";
 import CubeStats from "@/components/CubeStats";
+import CubeCardSearch from "@/components/CubeCardSearch";
 
 interface CubeDraftProps {
   onBoostersGenerated?: (boosters: CubeBoosterType[]) => void;
@@ -26,6 +27,7 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
   const [currentBoosterIndex, setCurrentBoosterIndex] = useState(0);
   const [cubeStats, setCubeStats] = useState<any>(null);
   const [showCardNames, setShowCardNames] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   // Calculate total boosters
   const totalBoosters = players * boostersPerPlayer;
@@ -71,7 +73,26 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
   };
 
   return (
-    <div className="flex flex-col items-center w-full max-w-2xl mx-auto p-4">
+    <div className="flex flex-col items-center w-full max-w-4xl mx-auto p-4">
+      {/* Card Search Section */}
+      <div className="w-full mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+          <h3 className="text-lg font-semibold text-center sm:text-left">Cube Card Search</h3>
+          <Button
+            onClick={() => setShowSearch(!showSearch)}
+            variant="outline"
+            size="sm"
+            className="w-full sm:w-auto"
+          >
+            {showSearch ? "Hide Search" : "Search Cards"}
+          </Button>
+        </div>
+        
+        {showSearch && (
+          <CubeCardSearch onClose={() => setShowSearch(false)} />
+        )}
+      </div>
+
       {/* Configuration Section */}
       <div className="w-full bg-card rounded-lg p-6 mb-6">
         <h3 className="text-lg font-semibold mb-4">Draft Configuration</h3>
@@ -154,46 +175,59 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
       {/* Generated Boosters Section */}
       {generatedBoosters.length > 0 && (
         <div className="w-full">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">
+          {/* Header - Mobile: Stack vertically, Desktop: Side by side */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+            <h3 className="text-lg font-semibold text-center sm:text-left">
               Generated Boosters ({generatedBoosters.length})
             </h3>
-            <div className="flex items-center gap-2">
+            
+            {/* Controls Container */}
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              {/* Toggle Names Button - Full width on mobile */}
               <Button
                 onClick={() => setShowCardNames(!showCardNames)}
                 variant="outline"
                 size="sm"
+                className="w-full sm:w-auto"
               >
                 {showCardNames ? "Hide Names" : "Show Names"}
               </Button>
-              <Button
-                onClick={() =>
-                  setCurrentBoosterIndex(Math.max(0, currentBoosterIndex - 1))
-                }
-                disabled={currentBoosterIndex === 0}
-                variant="outline"
-                size="sm"
-              >
-                Previous
-              </Button>
-              <span className="text-sm text-muted-foreground">
-                {currentBoosterIndex + 1} / {generatedBoosters.length}
-              </span>
-              <Button
-                onClick={() =>
-                  setCurrentBoosterIndex(
-                    Math.min(
-                      generatedBoosters.length - 1,
-                      currentBoosterIndex + 1
+              
+              {/* Navigation Controls */}
+              <div className="flex items-center gap-2 w-full sm:w-auto justify-center">
+                <Button
+                  onClick={() =>
+                    setCurrentBoosterIndex(Math.max(0, currentBoosterIndex - 1))
+                  }
+                  disabled={currentBoosterIndex === 0}
+                  variant="outline"
+                  size="sm"
+                  className="flex-1 sm:flex-initial"
+                >
+                  Previous
+                </Button>
+                
+                <span className="text-sm text-muted-foreground whitespace-nowrap px-2">
+                  {currentBoosterIndex + 1} / {generatedBoosters.length}
+                </span>
+                
+                <Button
+                  onClick={() =>
+                    setCurrentBoosterIndex(
+                      Math.min(
+                        generatedBoosters.length - 1,
+                        currentBoosterIndex + 1
+                      )
                     )
-                  )
-                }
-                disabled={currentBoosterIndex === generatedBoosters.length - 1}
-                variant="outline"
-                size="sm"
-              >
-                Next
-              </Button>
+                  }
+                  disabled={currentBoosterIndex === generatedBoosters.length - 1}
+                  variant="outline"
+                  size="sm"
+                  className="flex-1 sm:flex-initial"
+                >
+                  Next
+                </Button>
+              </div>
             </div>
           </div>
 
