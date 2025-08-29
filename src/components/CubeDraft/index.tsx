@@ -5,13 +5,14 @@ import { Button } from "@/components/ui/button";
 import {
   generateAllBoosters,
   getCubeStatistics,
-  CubeBooster,
+  CubeBooster as CubeBoosterType,
   resetDraftSession,
 } from "@/lib/cubeService";
 import { CARD_COLORS, CARD_RARITY } from "@/lib/booster";
+import CubeBooster from "@/components/CubeBooster";
 
 interface CubeDraftProps {
-  onBoostersGenerated?: (boosters: CubeBooster[]) => void;
+  onBoostersGenerated?: (boosters: CubeBoosterType[]) => void;
 }
 
 const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
@@ -19,7 +20,7 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
   const [boostersPerPlayer, setBoostersPerPlayer] = useState(3);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [generatedBoosters, setGeneratedBoosters] = useState<CubeBooster[]>([]);
+  const [generatedBoosters, setGeneratedBoosters] = useState<CubeBoosterType[]>([]);
   const [currentBoosterIndex, setCurrentBoosterIndex] = useState(0);
   const [cubeStats, setCubeStats] = useState<any>(null);
   const [showCardNames, setShowCardNames] = useState(false);
@@ -195,129 +196,13 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
           </div>
 
           {/* Current Booster Display */}
-          <div className="bg-card rounded-lg p-4">
-            <h4 className="font-medium mb-3">
-              Booster {currentBoosterIndex + 1}
-            </h4>
-            <div className="grid grid-cols-3 gap-2">
-              {generatedBoosters[currentBoosterIndex]?.map((card, idx) => {
-                const colorName =
-                  card.color === "white"
-                    ? "White"
-                    : card.color === "blue"
-                    ? "Blue"
-                    : card.color === "black"
-                    ? "Black"
-                    : card.color === "red"
-                    ? "Red"
-                    : card.color === "green"
-                    ? "Green"
-                    : card.color === "multicolor"
-                    ? "Multicolor"
-                    : card.color === "colorless"
-                    ? "Colorless"
-                    : card.color;
-
-                const rarityName =
-                  card.rarity === "mithyc"
-                    ? "Mythic"
-                    : card.rarity === "rare"
-                    ? "Rare"
-                    : card.rarity === "uncommon"
-                    ? "Uncommon"
-                    : card.rarity === "common"
-                    ? "Common"
-                    : card.rarity;
-
-                const colorBg =
-                  card.color === "white"
-                    ? "bg-amber-100 border-amber-300 text-amber-900"
-                    : card.color === "blue"
-                    ? "bg-blue-200 border-blue-400 text-blue-900"
-                    : card.color === "black"
-                    ? "bg-gray-800 border-gray-600 text-white"
-                    : card.color === "red"
-                    ? "bg-red-50 border-red-400 text-red-900"
-                    : card.color === "green"
-                    ? "bg-green-50 border-green-400 text-green-900"
-                    : card.color === "multicolor"
-                    ? "bg-gradient-to-r from-yellow-300 via-blue-300 via-gray-700 via-red-300 to-green-300 border-indigo-400 text-gray-900 shadow-inner"
-                    : "bg-slate-100 border-slate-400 text-slate-800";
-
-                const rarityColor =
-                  card.rarity === "mithyc"
-                    ? card.color === "black"
-                      ? "text-orange-300 font-bold"
-                      : card.color === "multicolor"
-                      ? "text-orange-800 font-bold drop-shadow-sm"
-                      : "text-orange-700 font-bold"
-                    : card.rarity === "rare"
-                    ? card.color === "black"
-                      ? "text-yellow-300 font-semibold"
-                      : card.color === "multicolor"
-                      ? "text-amber-800 font-semibold drop-shadow-sm"
-                      : "text-amber-700 font-semibold"
-                    : card.rarity === "uncommon"
-                    ? card.color === "black"
-                      ? "text-slate-300 font-medium"
-                      : card.color === "multicolor"
-                      ? "text-slate-800 font-medium drop-shadow-sm"
-                      : "text-slate-800 font-medium"
-                    : card.color === "black"
-                    ? "text-slate-400"
-                    : card.color === "multicolor"
-                    ? "text-slate-800 drop-shadow-sm"
-                    : "text-black-600";
-
-                return (
-                  <div
-                    key={idx}
-                    className={`p-3 rounded-lg border-2 text-xs transition-all ${colorBg} ${
-                      !showCardNames
-                        ? "h-20 flex flex-col justify-center items-center"
-                        : ""
-                    }`}
-                    title={
-                      showCardNames
-                        ? card.name
-                        : `${card.name} - ${colorName} ${rarityName}`
-                    }
-                  >
-                    {showCardNames && (
-                      <div
-                        className="font-medium truncate mb-1 text-center"
-                        title={card.name}
-                      >
-                        {card.name}
-                      </div>
-                    )}
-                    <div
-                      className={`text-center ${
-                        showCardNames
-                          ? "text-muted-foreground text-xs"
-                          : "space-y-1"
-                      }`}
-                    >
-                      <div
-                        className={`font-semibold ${rarityColor} ${
-                          !showCardNames ? "text-sm" : ""
-                        }`}
-                      >
-                        {rarityName}
-                      </div>
-                      <div
-                        className={`font-medium ${
-                          !showCardNames ? "text-sm opacity-80" : ""
-                        }`}
-                      >
-                        {colorName}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          {generatedBoosters[currentBoosterIndex] && (
+            <CubeBooster 
+              booster={generatedBoosters[currentBoosterIndex]}
+              boosterNumber={currentBoosterIndex + 1}
+              showCardNames={showCardNames}
+            />
+          )}
         </div>
       )}
 
