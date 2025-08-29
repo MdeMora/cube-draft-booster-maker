@@ -103,8 +103,6 @@ export default function Home() {
                 settings={boosterSettings}
                 onSettingsChange={handleSettingsChange}
                 onClose={() => setShowBoosterSettings(false)}
-                onToggle={() => setShowBoosterSettings(!showBoosterSettings)}
-                showBoosterSettings={showBoosterSettings}
               />
             )}
           </div>
