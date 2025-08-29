@@ -11,6 +11,7 @@ import {
 import CubeBooster from "@/components/CubeBooster";
 import CubeStats from "@/components/CubeStats";
 import CubeCardSearch from "@/components/CubeCardSearch";
+import NumberStepper from "@/components/NumberStepper";
 
 interface CubeDraftProps {
   onBoostersGenerated?: (boosters: CubeBoosterType[]) => void;
@@ -95,38 +96,22 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
 
       <h3 className="text-lg font-semibold mb-4">Draft Configuration</h3>
 
-      <div className="grid grid-cols-2 gap-4 mb-4">
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Players</label>
-          <input
-            type="number"
-            min="1"
-            max="12"
-            value={players}
-            onChange={(e) =>
-              setPlayers(
-                Math.max(1, Math.min(12, parseInt(e.target.value) || 1))
-              )
-            }
-            className="w-full px-3 py-2 border rounded-md bg-background"
-          />
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <NumberStepper
+          label="Players"
+          value={players}
+          min={1}
+          max={12}
+          onChange={setPlayers}
+        />
 
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Boosters per Player</label>
-          <input
-            type="number"
-            min="1"
-            max="6"
-            value={boostersPerPlayer}
-            onChange={(e) =>
-              setBoostersPerPlayer(
-                Math.max(1, Math.min(6, parseInt(e.target.value) || 1))
-              )
-            }
-            className="w-full px-3 py-2 border rounded-md bg-background"
-          />
-        </div>
+        <NumberStepper
+          label="Boosters per Player"
+          value={boostersPerPlayer}
+          min={1}
+          max={6}
+          onChange={setBoostersPerPlayer}
+        />
       </div>
 
       {/* Summary */}

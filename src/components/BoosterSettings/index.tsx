@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { BoosterSettings, DEFAULT_BOOSTER_SETTINGS } from "@/lib/booster";
-import { Settings } from "lucide-react";
+import NumberStepper from "@/components/NumberStepper";
 
 interface BoosterSettingsProps {
   settings: BoosterSettings;
@@ -58,95 +58,41 @@ const BoosterSettingsComponent = ({
         <div>
           <h4 className="font-medium mb-4">Card Distribution</h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center justify-between">
-                Mythics
-                <span className="text-orange-600 font-bold">
-                  {localSettings.mythics}
-                </span>
-              </label>
-              <input
-                type="range"
-                min="0"
-                max="10"
-                value={localSettings.mythics}
-                onChange={(e) =>
-                  handleInputChange("mythics", parseInt(e.target.value))
-                }
-                className="w-full"
-              />
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>0</span>
-                <span>10</span>
-              </div>
-            </div>
+            <NumberStepper
+              label="Mythics"
+              value={localSettings.mythics}
+              min={0}
+              max={10}
+              onChange={(value) => handleInputChange("mythics", value)}
+              className="text-orange-600"
+            />
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center justify-between">
-                Rares
-                <span className="text-amber-600 font-semibold">
-                  {localSettings.rares}
-                </span>
-              </label>
-              <input
-                type="range"
-                min="0"
-                max="15"
-                value={localSettings.rares}
-                onChange={(e) =>
-                  handleInputChange("rares", parseInt(e.target.value))
-                }
-                className="w-full"
-              />
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>0</span>
-                <span>15</span>
-              </div>
-            </div>
+            <NumberStepper
+              label="Rares"
+              value={localSettings.rares}
+              min={0}
+              max={15}
+              onChange={(value) => handleInputChange("rares", value)}
+              className="text-amber-600"
+            />
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center justify-between">
-                Uncommons
-                <span className="text-slate-600 font-medium">
-                  {localSettings.uncommons}
-                </span>
-              </label>
-              <input
-                type="range"
-                min="0"
-                max="10"
-                value={localSettings.uncommons}
-                onChange={(e) =>
-                  handleInputChange("uncommons", parseInt(e.target.value))
-                }
-                className="w-full"
-              />
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>0</span>
-                <span>10</span>
-              </div>
-            </div>
+            <NumberStepper
+              label="Uncommons"
+              value={localSettings.uncommons}
+              min={0}
+              max={10}
+              onChange={(value) => handleInputChange("uncommons", value)}
+              className="text-slate-600"
+            />
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center justify-between">
-                Commons
-                <span className="text-slate-500">{localSettings.commons}</span>
-              </label>
-              <input
-                type="range"
-                min="0"
-                max="10"
-                value={localSettings.commons}
-                onChange={(e) =>
-                  handleInputChange("commons", parseInt(e.target.value))
-                }
-                className="w-full"
-              />
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>0</span>
-                <span>10</span>
-              </div>
-            </div>
+            <NumberStepper
+              label="Commons"
+              value={localSettings.commons}
+              min={0}
+              max={10}
+              onChange={(value) => handleInputChange("commons", value)}
+              className="text-slate-500"
+            />
           </div>
 
           {/* Total Cards Display */}
@@ -195,28 +141,14 @@ const BoosterSettingsComponent = ({
             </div>
 
             {localSettings.colorBalance && (
-              <div className="space-y-2">
-                <label className="text-sm font-medium flex items-center justify-between">
-                  Max Cards per Color
-                  <span className="text-primary font-semibold">
-                    {localSettings.maxPerColor}
-                  </span>
-                </label>
-                <input
-                  type="range"
-                  min="1"
-                  max="6"
-                  value={localSettings.maxPerColor}
-                  onChange={(e) =>
-                    handleInputChange("maxPerColor", parseInt(e.target.value))
-                  }
-                  className="w-full"
-                />
-                <div className="flex justify-between text-xs text-muted-foreground">
-                  <span>1</span>
-                  <span>6</span>
-                </div>
-              </div>
+              <NumberStepper
+                label="Max Cards per Color"
+                value={localSettings.maxPerColor}
+                min={1}
+                max={6}
+                onChange={(value) => handleInputChange("maxPerColor", value)}
+                className="text-primary"
+              />
             )}
           </div>
         </div>
