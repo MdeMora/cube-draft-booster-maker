@@ -11,24 +11,37 @@ interface CubeCardSearchProps {
 
 const getColorName = (color: string): string => {
   switch (color) {
-    case "white": return "White";
-    case "blue": return "Blue";
-    case "black": return "Black";
-    case "red": return "Red";
-    case "green": return "Green";
-    case "multicolor": return "Multicolor";
-    case "colorless": return "Colorless";
-    default: return color;
+    case "white":
+      return "White";
+    case "blue":
+      return "Blue";
+    case "black":
+      return "Black";
+    case "red":
+      return "Red";
+    case "green":
+      return "Green";
+    case "multicolor":
+      return "Multicolor";
+    case "colorless":
+      return "Colorless";
+    default:
+      return color;
   }
 };
 
 const getRarityName = (rarity: string): string => {
   switch (rarity) {
-    case "mithyc": return "Mythic";
-    case "rare": return "Rare";
-    case "uncommon": return "Uncommon";
-    case "common": return "Common";
-    default: return rarity;
+    case "mithyc":
+      return "Mythic";
+    case "rare":
+      return "Rare";
+    case "uncommon":
+      return "Uncommon";
+    case "common":
+      return "Common";
+    default:
+      return rarity;
   }
 };
 
@@ -53,14 +66,20 @@ const getColorBackground = (color: string): string => {
 
 const getRarityColor = (rarity: string, cardColor: string): string => {
   const isBlack = cardColor === "black";
-  
+
   switch (rarity) {
     case "mithyc":
-      return isBlack ? "text-orange-300 font-bold" : "text-orange-700 font-bold";
+      return isBlack
+        ? "text-orange-300 font-bold"
+        : "text-orange-700 font-bold";
     case "rare":
-      return isBlack ? "text-yellow-300 font-semibold" : "text-amber-700 font-semibold";
+      return isBlack
+        ? "text-yellow-300 font-semibold"
+        : "text-amber-700 font-semibold";
     case "uncommon":
-      return isBlack ? "text-slate-300 font-medium" : "text-slate-700 font-medium";
+      return isBlack
+        ? "text-slate-300 font-medium"
+        : "text-slate-700 font-medium";
     default:
       return isBlack ? "text-slate-400" : "text-slate-600";
   }
@@ -70,7 +89,6 @@ const CubeCardSearch = ({ onClose }: CubeCardSearchProps) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<CubeCard[]>([]);
   const [loading, setLoading] = useState(false);
-  const [selectedCard, setSelectedCard] = useState<CubeCard | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Focus the input when component mounts
@@ -100,14 +118,9 @@ const CubeCardSearch = ({ onClose }: CubeCardSearchProps) => {
     return () => clearTimeout(timeoutId);
   }, [query]);
 
-  const handleCardSelect = (card: CubeCard) => {
-    setSelectedCard(card);
-  };
-
   const handleClearSearch = () => {
     setQuery("");
     setResults([]);
-    setSelectedCard(null);
     inputRef.current?.focus();
   };
 
@@ -115,9 +128,16 @@ const CubeCardSearch = ({ onClose }: CubeCardSearchProps) => {
     <div className="w-full bg-card rounded-lg p-4 sm:p-6 border">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-        <h3 className="text-lg font-semibold text-center sm:text-left">Card Search</h3>
+        <h3 className="text-lg font-semibold text-center sm:text-left">
+          Card Search
+        </h3>
         {onClose && (
-          <Button onClick={onClose} variant="ghost" size="sm" className="w-full sm:w-auto">
+          <Button
+            onClick={onClose}
+            variant="ghost"
+            size="sm"
+            className="w-full sm:w-auto"
+          >
             <X size={16} className="mr-2 sm:mr-0" />
             <span className="sm:hidden">Close Search</span>
           </Button>
@@ -126,7 +146,10 @@ const CubeCardSearch = ({ onClose }: CubeCardSearchProps) => {
 
       {/* Search Input */}
       <div className="relative mb-4">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
+        <Search
+          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"
+          size={16}
+        />
         <input
           ref={inputRef}
           type="text"
@@ -158,13 +181,14 @@ const CubeCardSearch = ({ onClose }: CubeCardSearchProps) => {
       {!loading && results.length > 0 && (
         <div className="space-y-2 mb-4 max-h-64 overflow-y-auto">
           <h4 className="text-sm font-medium text-muted-foreground">
-            Found {results.length} card{results.length !== 1 ? 's' : ''}:
+            Found {results.length} card{results.length !== 1 ? "s" : ""}:
           </h4>
           {results.map((card, idx) => (
             <div
               key={idx}
-              onClick={() => handleCardSelect(card)}
-              className={`p-3 rounded-lg border cursor-pointer hover:bg-muted/50 transition-colors ${getColorBackground(card.color)}`}
+              className={`p-3 rounded-lg border ${getColorBackground(
+                card.color
+              )}`}
             >
               <div className="flex justify-between items-start">
                 <div className="flex-1">
@@ -174,7 +198,12 @@ const CubeCardSearch = ({ onClose }: CubeCardSearchProps) => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className={`text-sm ${getRarityColor(card.rarity, card.color)}`}>
+                  <div
+                    className={`text-sm ${getRarityColor(
+                      card.rarity,
+                      card.color
+                    )}`}
+                  >
                     {getRarityName(card.rarity)}
                   </div>
                   <div className="text-xs opacity-80">
@@ -196,52 +225,14 @@ const CubeCardSearch = ({ onClose }: CubeCardSearchProps) => {
         </div>
       )}
 
-      {/* Selected Card Details */}
-      {selectedCard && (
-        <div className="border-t pt-4">
-          <h4 className="font-medium mb-3">Card Details</h4>
-          <div className={`p-3 sm:p-4 rounded-lg border-2 ${getColorBackground(selectedCard.color)}`}>
-            <div className="space-y-3">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                <h5 className="text-lg font-bold text-center sm:text-left">{selectedCard.name}</h5>
-                <div className="text-center sm:text-right">
-                  <div className={`text-sm ${getRarityColor(selectedCard.rarity, selectedCard.color)}`}>
-                    {getRarityName(selectedCard.rarity)}
-                  </div>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 text-sm">
-                <div className="text-center sm:text-left">
-                  <span className="font-medium">Type:</span> {selectedCard.type}
-                </div>
-                <div className="text-center sm:text-left">
-                  <span className="font-medium">Color:</span> {getColorName(selectedCard.color)}
-                </div>
-                <div className="text-center sm:text-left">
-                  <span className="font-medium">CMC:</span> {selectedCard.cmc}
-                </div>
-                <div className="text-center sm:text-left">
-                  <span className="font-medium">Set:</span> {selectedCard.set}
-                </div>
-              </div>
-              
-              {selectedCard.collectorNumber && (
-                <div className="text-sm">
-                  <span className="font-medium">Collector Number:</span> {selectedCard.collectorNumber}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Help Text */}
       {!query.trim() && (
         <div className="text-center py-8 text-muted-foreground">
           <Search size={32} className="mx-auto mb-2 opacity-50" />
           <p className="text-sm">Search for any card in the cube</p>
-          <p className="text-xs mt-1">Try searching for card names, types, or sets</p>
+          <p className="text-xs mt-1">
+            Try searching for card names, types, or sets
+          </p>
         </div>
       )}
     </div>
