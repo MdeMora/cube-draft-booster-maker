@@ -98,7 +98,7 @@ const NumberStepper = ({
           onChange={handleInputChange}
           onBlur={handleInputBlur}
           onKeyDown={handleKeyDown}
-          disabled={disabled}
+          disabled
           className="flex-1 h-10 px-3 text-center border-0 bg-transparent focus:outline-none focus:ring-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           inputMode="numeric"
         />
