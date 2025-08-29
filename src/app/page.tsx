@@ -3,11 +3,13 @@
 import BoosterCarousel from "@/components/BoosterCarousel";
 import Dialog from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Booster, generateBooster, saveBoosterToStorage } from "@/lib/booster";
 import { SeparatorHorizontal, Settings } from "lucide-react";
 import { useState } from "react";
 import SettingsForm from "@/components/SettingsForm/SettingsForm";
 import PastBooster from "@/components/PastBooster";
+import CubeDraft from "@/components/CubeDraft";
 
 export default function Home() {
   const [booster, setBooster] = useState<Booster | undefined>(undefined);
@@ -33,17 +35,29 @@ export default function Home() {
       <p className="text-4xl text-center font-bold mt-4">
         Cube draft booster generator
       </p>
-      <div className="flex items-center gap-2 mt-4">
-        <Button onClick={handleClick}>
-          {loading ? "Loading ..." : "Generate Booster +"}
-        </Button>
-        {/* <Button>
-          <Settings onClick={handleSettingsClick} />
-        </Button> */}
-      </div>
+      
+      <Tabs defaultValue="custom" className="w-full max-w-4xl mt-8">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="custom">Custom Booster</TabsTrigger>
+          <TabsTrigger value="cube">Cube List Booster</TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="custom" className="flex flex-col items-center">
+          <div className="flex items-center gap-2 mt-4">
+            <Button onClick={handleClick}>
+              {loading ? "Loading ..." : "Generate Booster +"}
+            </Button>
+          </div>
 
-      {booster && <BoosterCarousel booster={booster} />}
-      <PastBooster booster={booster} />
+          {booster && <BoosterCarousel booster={booster} />}
+          <PastBooster booster={booster} />
+        </TabsContent>
+        
+        <TabsContent value="cube" className="flex flex-col items-center">
+          <CubeDraft />
+        </TabsContent>
+      </Tabs>
+
       <Dialog open={showSettings} onClose={() => setShowSettings(false)}>
         <SettingsForm />
       </Dialog>
