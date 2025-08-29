@@ -231,27 +231,43 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
 
                 const colorBg =
                   card.color === "white"
-                    ? "bg-yellow-100 border-yellow-300"
+                    ? "bg-amber-100 border-amber-300 text-amber-900"
                     : card.color === "blue"
-                    ? "bg-blue-100 border-blue-300"
+                    ? "bg-blue-200 border-blue-400 text-blue-900"
                     : card.color === "black"
-                    ? "bg-gray-100 border-gray-400"
+                    ? "bg-gray-800 border-gray-600 text-white"
                     : card.color === "red"
-                    ? "bg-red-100 border-red-300"
+                    ? "bg-red-50 border-red-400 text-red-900"
                     : card.color === "green"
-                    ? "bg-green-100 border-green-300"
+                    ? "bg-green-50 border-green-400 text-green-900"
                     : card.color === "multicolor"
-                    ? "bg-gradient-to-br from-blue-100 to-red-100 border-purple-300"
-                    : "bg-gray-50 border-gray-200";
+                    ? "bg-gradient-to-r from-yellow-300 via-blue-300 via-gray-700 via-red-300 to-green-300 border-indigo-400 text-gray-900 shadow-inner"
+                    : "bg-slate-100 border-slate-400 text-slate-800";
 
                 const rarityColor =
                   card.rarity === "mithyc"
-                    ? "text-orange-600 font-bold"
+                    ? card.color === "black"
+                      ? "text-orange-300 font-bold"
+                      : card.color === "multicolor"
+                      ? "text-orange-800 font-bold drop-shadow-sm"
+                      : "text-orange-700 font-bold"
                     : card.rarity === "rare"
-                    ? "text-yellow-600 font-semibold"
+                    ? card.color === "black"
+                      ? "text-yellow-300 font-semibold"
+                      : card.color === "multicolor"
+                      ? "text-amber-800 font-semibold drop-shadow-sm"
+                      : "text-amber-700 font-semibold"
                     : card.rarity === "uncommon"
-                    ? "text-gray-600 font-medium"
-                    : "text-gray-500";
+                    ? card.color === "black"
+                      ? "text-slate-300 font-medium"
+                      : card.color === "multicolor"
+                      ? "text-slate-800 font-medium drop-shadow-sm"
+                      : "text-slate-800 font-medium"
+                    : card.color === "black"
+                    ? "text-slate-400"
+                    : card.color === "multicolor"
+                    ? "text-slate-800 drop-shadow-sm"
+                    : "text-black-600";
 
                 return (
                   <div
@@ -269,7 +285,7 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
                   >
                     {showCardNames && (
                       <div
-                        className="font-medium truncate mb-1 text-black text-center"
+                        className="font-medium truncate mb-1 text-center"
                         title={card.name}
                       >
                         {card.name}
@@ -291,7 +307,7 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
                       </div>
                       <div
                         className={`font-medium ${
-                          !showCardNames ? "text-sm text-gray-700" : ""
+                          !showCardNames ? "text-sm opacity-80" : ""
                         }`}
                       >
                         {colorName}
