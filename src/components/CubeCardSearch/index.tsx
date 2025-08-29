@@ -191,7 +191,7 @@ const CubeCardSearch = ({ onClose }: CubeCardSearchProps) => {
       {!loading && query.trim() && results.length === 0 && (
         <div className="text-center py-8 text-muted-foreground">
           <Search size={32} className="mx-auto mb-2 opacity-50" />
-          <p>No cards found for "{query}"</p>
+          <p>No cards found for &quot;{query}&quot;</p>
           <p className="text-sm">Try searching for a different term</p>
         </div>
       )}

@@ -77,7 +77,9 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
       {/* Card Search Section */}
       <div className="w-full mb-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-          <h3 className="text-lg font-semibold text-center sm:text-left">Cube Card Search</h3>
+          <h3 className="text-lg font-semibold text-center sm:text-left">
+            Cube Card Search
+          </h3>
           <Button
             onClick={() => setShowSearch(!showSearch)}
             variant="outline"
@@ -87,89 +89,84 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
             {showSearch ? "Hide Search" : "Search Cards"}
           </Button>
         </div>
-        
-        {showSearch && (
-          <CubeCardSearch onClose={() => setShowSearch(false)} />
-        )}
+
+        {showSearch && <CubeCardSearch onClose={() => setShowSearch(false)} />}
       </div>
 
-      {/* Configuration Section */}
-      <div className="w-full bg-card rounded-lg p-6 mb-6">
-        <h3 className="text-lg font-semibold mb-4">Draft Configuration</h3>
+      <h3 className="text-lg font-semibold mb-4">Draft Configuration</h3>
 
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Players</label>
-            <input
-              type="number"
-              min="1"
-              max="12"
-              value={players}
-              onChange={(e) =>
-                setPlayers(
-                  Math.max(1, Math.min(12, parseInt(e.target.value) || 1))
-                )
-              }
-              className="w-full px-3 py-2 border rounded-md bg-background"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Boosters per Player</label>
-            <input
-              type="number"
-              min="1"
-              max="6"
-              value={boostersPerPlayer}
-              onChange={(e) =>
-                setBoostersPerPlayer(
-                  Math.max(1, Math.min(6, parseInt(e.target.value) || 1))
-                )
-              }
-              className="w-full px-3 py-2 border rounded-md bg-background"
-            />
-          </div>
+      <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="space-y-2">
+          <label className="text-sm font-medium">Players</label>
+          <input
+            type="number"
+            min="1"
+            max="12"
+            value={players}
+            onChange={(e) =>
+              setPlayers(
+                Math.max(1, Math.min(12, parseInt(e.target.value) || 1))
+              )
+            }
+            className="w-full px-3 py-2 border rounded-md bg-background"
+          />
         </div>
 
-        {/* Summary */}
-        <div className="text-sm text-muted-foreground space-y-1 mb-4">
-          <p>
-            Total Boosters: {totalBoosters} / {maxBoosters}
-          </p>
-          <p>Total Cards: {totalCards} / 540</p>
-          {cubeStats && <p>Available: {cubeStats.totalCards} cards in cube</p>}
+        <div className="space-y-2">
+          <label className="text-sm font-medium">Boosters per Player</label>
+          <input
+            type="number"
+            min="1"
+            max="6"
+            value={boostersPerPlayer}
+            onChange={(e) =>
+              setBoostersPerPlayer(
+                Math.max(1, Math.min(6, parseInt(e.target.value) || 1))
+              )
+            }
+            className="w-full px-3 py-2 border rounded-md bg-background"
+          />
         </div>
+      </div>
 
-        {/* Validation Warning */}
-        {totalBoosters > maxBoosters && (
-          <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md mb-4">
-            Too many boosters! Maximum is {maxBoosters} boosters (
-            {maxBoosters * 15} cards).
-          </div>
-        )}
+      {/* Summary */}
+      <div className="text-sm text-muted-foreground space-y-1 mb-4">
+        <p>
+          Total Boosters: {totalBoosters} / {maxBoosters}
+        </p>
+        <p>Total Cards: {totalCards} / 540</p>
+        {cubeStats && <p>Available: {cubeStats.totalCards} cards in cube</p>}
+      </div>
 
-        {error && (
-          <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md mb-4">
-            {error}
-          </div>
-        )}
+      {/* Validation Warning */}
+      {totalBoosters > maxBoosters && (
+        <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md mb-4">
+          Too many boosters! Maximum is {maxBoosters} boosters (
+          {maxBoosters * 15} cards).
+        </div>
+      )}
 
-        {/* Action Buttons */}
-        <div className="flex gap-2">
-          <Button
-            onClick={handleGenerateBoosters}
-            disabled={loading || totalBoosters > maxBoosters}
-            className="flex-1"
-          >
-            {loading ? "Generating..." : "Generate Draft"}
+      {error && (
+        <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md mb-4">
+          {error}
+        </div>
+      )}
+
+      {/* Action Buttons */}
+      <div className="flex gap-2">
+        <Button
+          onClick={handleGenerateBoosters}
+          disabled={loading || totalBoosters > maxBoosters}
+          className="flex-1"
+        >
+          {loading ? "Generating..." : "Generate Draft"}
+        </Button>
+
+        {generatedBoosters.length > 0 && (
+          <Button onClick={handleReset} variant="outline">
+            Reset
           </Button>
-
-          {generatedBoosters.length > 0 && (
-            <Button onClick={handleReset} variant="outline">
-              Reset
-            </Button>
-          )}
-        </div>
+        )}
       </div>
 
       {/* Generated Boosters Section */}
@@ -180,7 +177,7 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
             <h3 className="text-lg font-semibold text-center sm:text-left">
               Generated Boosters ({generatedBoosters.length})
             </h3>
-            
+
             {/* Controls Container */}
             <div className="flex flex-col sm:flex-row items-center gap-3">
               {/* Toggle Names Button - Full width on mobile */}
@@ -192,7 +189,7 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
               >
                 {showCardNames ? "Hide Names" : "Show Names"}
               </Button>
-              
+
               {/* Navigation Controls */}
               <div className="flex items-center gap-2 w-full sm:w-auto justify-center">
                 <Button
@@ -206,11 +203,11 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
                 >
                   Previous
                 </Button>
-                
+
                 <span className="text-sm text-muted-foreground whitespace-nowrap px-2">
                   {currentBoosterIndex + 1} / {generatedBoosters.length}
                 </span>
-                
+
                 <Button
                   onClick={() =>
                     setCurrentBoosterIndex(
@@ -220,7 +217,9 @@ const CubeDraft = ({ onBoostersGenerated }: CubeDraftProps) => {
                       )
                     )
                   }
-                  disabled={currentBoosterIndex === generatedBoosters.length - 1}
+                  disabled={
+                    currentBoosterIndex === generatedBoosters.length - 1
+                  }
                   variant="outline"
                   size="sm"
                   className="flex-1 sm:flex-initial"

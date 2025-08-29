@@ -1,32 +1,50 @@
-import { CubeBooster as CubeBoosterType } from "@/lib/cubeService";
+import { CubeBooster as CubeBoosterType, CubeCard } from "@/lib/cubeService";
+import { Card } from "@/lib/booster";
+
+// Support both CubeCard (from cube) and Card (custom boosters)
+type BoosterCard = CubeCard | (Card & { name?: string });
 
 interface CubeBoosterProps {
-  booster: CubeBoosterType;
-  boosterNumber: number;
+  booster: BoosterCard[];
+  boosterNumber?: number;
   showCardNames: boolean;
+  isCustomBooster?: boolean;
 }
 
 // Helper functions for card styling
 const getColorName = (color: string): string => {
   switch (color) {
-    case "white": return "White";
-    case "blue": return "Blue";
-    case "black": return "Black";
-    case "red": return "Red";
-    case "green": return "Green";
-    case "multicolor": return "Multicolor";
-    case "colorless": return "Colorless";
-    default: return color;
+    case "white":
+      return "White";
+    case "blue":
+      return "Blue";
+    case "black":
+      return "Black";
+    case "red":
+      return "Red";
+    case "green":
+      return "Green";
+    case "multicolor":
+      return "Multicolor";
+    case "colorless":
+      return "Colorless";
+    default:
+      return color;
   }
 };
 
 const getRarityName = (rarity: string): string => {
   switch (rarity) {
-    case "mithyc": return "Mythic";
-    case "rare": return "Rare";
-    case "uncommon": return "Uncommon";
-    case "common": return "Common";
-    default: return rarity;
+    case "mithyc":
+      return "Mythic";
+    case "rare":
+      return "Rare";
+    case "uncommon":
+      return "Uncommon";
+    case "common":
+      return "Common";
+    default:
+      return rarity;
   }
 };
 
@@ -52,7 +70,7 @@ const getColorBackground = (color: string): string => {
 const getRarityColor = (rarity: string, cardColor: string): string => {
   const isBlack = cardColor === "black";
   const isMulticolor = cardColor === "multicolor";
-  
+
   switch (rarity) {
     case "mithyc":
       if (isBlack) return "text-orange-300 font-bold";
@@ -73,18 +91,49 @@ const getRarityColor = (rarity: string, cardColor: string): string => {
   }
 };
 
-const CubeBooster = ({ booster, boosterNumber, showCardNames }: CubeBoosterProps) => {
+// Generate placeholder card names for custom boosters
+const generatePlaceholderName = (
+  color: string,
+  rarity: string,
+  index: number
+): string => {
+  const colorName = getColorName(color);
+  const rarityName = getRarityName(rarity);
+
+  const cardTypes = ["Creature", "Spell", "Artifact", "Enchantment"];
+  const cardType = cardTypes[index % cardTypes.length];
+
+  return `${colorName} ${rarityName} ${cardType}`;
+};
+
+const CubeBooster = ({
+  booster,
+  boosterNumber,
+  showCardNames,
+  isCustomBooster = false,
+}: CubeBoosterProps) => {
   return (
-    <div className="bg-card rounded-lg p-4">
-      <h4 className="font-medium mb-3">
-        Booster {boosterNumber}
-      </h4>
+    <div
+      className={`${
+        boosterNumber ? "bg-card rounded-lg p-4" : "bg-transparent"
+      }`}
+    >
+      {boosterNumber && (
+        <h4 className="font-medium mb-3">Booster {boosterNumber}</h4>
+      )}
       <div className="grid grid-cols-3 gap-2">
         {booster.map((card, idx) => {
           const colorName = getColorName(card.color);
           const rarityName = getRarityName(card.rarity);
           const colorBg = getColorBackground(card.color);
           const rarityColor = getRarityColor(card.rarity, card.color);
+
+          // Use actual name for cube cards, placeholder for custom cards
+          const cardName =
+            (card as CubeCard).name ||
+            (isCustomBooster
+              ? generatePlaceholderName(card.color, card.rarity, idx)
+              : `Card ${idx + 1}`);
 
           return (
             <div
@@ -96,23 +145,21 @@ const CubeBooster = ({ booster, boosterNumber, showCardNames }: CubeBoosterProps
               }`}
               title={
                 showCardNames
-                  ? card.name
-                  : `${card.name} - ${colorName} ${rarityName}`
+                  ? cardName
+                  : `${cardName} - ${colorName} ${rarityName}`
               }
             >
               {showCardNames && (
                 <div
                   className="font-medium truncate mb-1 text-center"
-                  title={card.name}
+                  title={cardName}
                 >
-                  {card.name}
+                  {cardName}
                 </div>
               )}
               <div
                 className={`text-center ${
-                  showCardNames
-                    ? "text-muted-foreground text-xs"
-                    : "space-y-1"
+                  showCardNames ? "text-muted-foreground text-xs" : "space-y-1"
                 }`}
               >
                 <div
