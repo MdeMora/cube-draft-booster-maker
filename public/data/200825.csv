@@ -2,12 +2,12 @@ name,CMC,Type,Color,Set,Collector Number,Rarity,Color Category,status,Finish,may
 "Descendant of Storms",1,"Creature - Human Soldier",W,"tdm","8",uncommon,White,Not Owned,Non-foil,false,,,"","",138959
 "Giver of Runes",1,"Creature - Kor Cleric",W,"mh1","13",rare,White,Not Owned,Non-foil,false,,,"","",72398
 "Guide of Souls",1,"Creature - Human Cleric",W,"mh3","29",rare,White,Not Owned,Non-foil,false,,,"","",126075
-"Lightstall Inquisitor",1,"Creature - Angel Wizard",W,"eoe","24",rare,White,Not Owned,Non-foil,false,,,"","",142661
+"Ademi of the Silkchutes",1,"Creature - Rabbit Advisor",W,"blb","1",uncommon,White,Not Owned,Non-foil,false,,,"","",129249
 "Mother of Runes",1,"Creature - Human Cleric",W,"ulg","14",uncommon,White,Not Owned,Non-foil,false,,,"","",12553
 "Ocelot Pride",1,"Creature - Cat",W,"mh3","38",mythic,White,Not Owned,Non-foil,false,,,"","",126093
 "Thraben Inspector",1,"Creature - Human Soldier",W,"soi","44",common,White,Not Owned,Non-foil,false,,,"","",60240
 "Cathar Commando",2,"Creature - Human Soldier",W,"mid","10",common,White,Not Owned,Non-foil,false,,,"","",92942
-"Cloud, Midgar Mercenary",2,"Legendary Creature - Human Soldier Mercenary",W,"pspl","5",mythic,White,Not Owned,Non-foil,false,,,"","",
+"Makdee and Itla, Skysnarers",2,"Legendary Creature - Bird Scout",UW,"blb","222",rare,Multicolored,Not Owned,Non-foil,false,,,"","",129670
 "Containment Priest",2,"Creature - Human Cleric",W,"c14","5",rare,White,Not Owned,Non-foil,false,,,"","",55177
 "Jacked Rabbit",2,"Creature - Rabbit Warrior",W,"blc","9",rare,White,Not Owned,Non-foil,false,,,"","",128917
 "Lion Sash",2,"Artifact Creature - Equipment Cat",W,"neo","26",rare,White,Not Owned,Non-foil,false,,,"","",96962
@@ -81,6 +81,7 @@ name,CMC,Type,Color,Set,Collector Number,Rarity,Color Category,status,Finish,may
 "Urza, Lord High Artificer",4,"Legendary Creature - Human Artificer",U,"mh1","75",mythic,Blue,Not Owned,Non-foil,false,,,"","",72522
 "Quantum Riddler",5,"Creature - Sphinx",U,"eoe","72",mythic,Blue,Not Owned,Non-foil,false,,,"","",142757
 "Kappa Cannoneer",6,"Artifact Creature - Turtle Warrior",U,"nec","14",rare,Blue,Not Owned,Non-foil,false,,,"","",97776
+"Spectral Restitching",4,"Instant",U,"mom","72",uncommon,Blue,Not Owned,Non-foil,false,,,"","",109960
 "Narset, Parter of Veils",3,"Legendary Planeswalker - Narset",U,"war","61",uncommon,Blue,Not Owned,Non-foil,false,,,"","",71728
 "Jace, the Mind Sculptor",4,"Legendary Planeswalker - Jace",U,"wwk","31",mythic,Blue,Not Owned,Non-foil,false,,,"","",35591
 "Jace, Wielder of Mysteries",4,"Legendary Planeswalker - Jace",U,"war","54",rare,Blue,Not Owned,Non-foil,false,,,"","",71714
@@ -219,15 +220,14 @@ name,CMC,Type,Color,Set,Collector Number,Rarity,Color Category,status,Finish,may
 "Screaming Nemesis",3,"Creature - Spirit",R,"dsk","157",mythic,Red,Not Owned,Non-foil,false,,,"","",130445
 "Seasoned Pyromancer",3,"Creature - Human Shaman",R,"mh1","145",mythic,Red,Not Owned,Non-foil,false,,,"","",72662
 "Tersa Lightshatter",3,"Legendary Creature - Orc Wizard",R,"tdm","127",rare,Red,Not Owned,Non-foil,false,,,"","",139209
-"Yuffie, Materia Hunter",3,"Legendary Creature - Human Ninja",R,"fic","65",rare,Red,Not Owned,Non-foil,false,,,"","",140121
-"Flametongue Kavu",4,"Creature - Kavu",R,"pls","60",uncommon,Red,Not Owned,Non-foil,false,,,"","",15267
+"Glorybringer",5,"Creature - Dragon",R,"akh","134",rare,Red,Not Owned,Non-foil,false,,,"","",63311
+"Nia, Skysail Storyteller",1,"Legendary Creature - Bird Scout",,"blb","221",rare,Multicolored,Not Owned,Non-foil,false,,,"","",129668
 "Headliner Scarlett",4,"Legendary Creature - Human Warlock",R,"clu","4",rare,Red,Not Owned,Non-foil,false,,,"","",123418
 "Pyrogoyf",4,"Creature - Lhurgoyf",R,"m3c","111",rare,Red,Not Owned,Non-foil,false,,,"","",127421
 "Fury",5,"Creature - Elemental Incarnation",R,"mh2","126",mythic,Red,Not Owned,Non-foil,false,,,"","",90629
 "Goldspan Dragon",5,"Creature - Dragon",R,"khm","139",mythic,Red,Not Owned,Non-foil,false,,,"","",87613
-"Nova Hellkite",5,"Creature - Dragon",R,"eoe","148",rare,Red,Not Owned,Non-foil,false,,,"","",142909
 "Oliphaunt",6,"Creature - Elephant",R,"ltr","139",common,Red,Not Owned,Non-foil,false,,,"","",112188
-"Greater Gargadon",10,"Creature - Beast",R,"tsp","161",rare,Red,Not Owned,Non-foil,false,,,"","",25581
+"Embereth Shieldbreaker",2,"Creature - Human Knight",R,"eld","122",uncommon,Red,Not Owned,Non-foil,false,,,"","",78366
 "Chandra, Torch of Defiance",4,"Legendary Planeswalker - Chandra",R,"kld","110",mythic,Red,Not Owned,Non-foil,false,,,"","",61573
 "Burst Lightning",1,"Instant",R,"zen","119",common,Red,Not Owned,Non-foil,false,,,"","",34408
 "Galvanic Blast",1,"Instant",R,"som","91",common,Red,Not Owned,Non-foil,false,,,"","",38203
@@ -238,7 +238,7 @@ name,CMC,Type,Color,Set,Collector Number,Rarity,Color Category,status,Finish,may
 "Unholy Heat",1,"Instant",R,"mh2","145",common,Red,Not Owned,Non-foil,false,,,"","",90667
 "Abrade",2,"Instant",R,"hou","83",uncommon,Red,Not Owned,Non-foil,false,,,"","",64650
 "Delayed Blast Fireball",3,"Instant",R,"clb","676",rare,Red,Not Owned,Non-foil,false,,,"","",101448
-"Seething Song",3,"Instant",R,"mrd","104",common,Red,Not Owned,Non-foil,false,,,"","",19991
+"Goben, Gene-Splice Savant",3,"Legendary Creature - Human Artificer",,"otj","200",rare,Multicolored,Not Owned,Non-foil,false,,,"","",124313
 "Mine Collapse",4,"Instant",R,"mh2","135",common,Red,Not Owned,Non-foil,false,,,"","",90647
 "Through the Breach",5,"Instant - Arcane",R,"chk","193",rare,Red,Not Owned,Non-foil,false,,,"","",21519
 "Fireblast",6,"Instant",R,"vis","79",common,Red,Not Owned,Non-foil,false,,,"","",7551
@@ -274,7 +274,7 @@ name,CMC,Type,Color,Set,Collector Number,Rarity,Color Category,status,Finish,may
 "Scythecat Cub",2,"Creature - Cat",G,"j25","24",rare,Green,Not Owned,Non-foil,false,,,"","",132840
 "Springheart Nantuko",2,"Enchantment Creature - Insect Monk",G,"mh3","171",rare,Green,Not Owned,Non-foil,false,,,"","",126359
 "Sylvan Caryatid",2,"Creature - Plant",G,"ths","180",rare,Green,Not Owned,Non-foil,false,,,"","",50260
-"Tarmogoyf",2,"Creature - Lhurgoyf",G,"fut","153",rare,Green,Not Owned,Non-foil,false,,,"","",26844
+"Cren, Undercity Dreamer",2,"Legendary Creature - Human Warlock",BU,"otj","197",rare,Multicolored,Not Owned,Non-foil,false,,,"","",124310
 "Tifa Lockhart",2,"Legendary Creature - Human Monk",G,"pf25","9",rare,Green,Not Owned,Non-foil,false,,,"","",
 "Courser of Kruphix",3,"Enchantment Creature - Centaur",G,"bng","119",rare,Green,Not Owned,Non-foil,false,,,"","",51851
 "Endurance",3,"Creature - Elemental Incarnation",G,"mh2","157",mythic,Green,Not Owned,Non-foil,false,,,"","",90691
@@ -316,12 +316,12 @@ name,CMC,Type,Color,Set,Collector Number,Rarity,Color Category,status,Finish,may
 "Rancor",1,"Enchantment - Aura",G,"ulg","110",common,Green,Not Owned,Non-foil,false,,,"","",12677
 "Oath of Druids",2,"Enchantment",G,"exo","115",rare,Green,Not Owned,Non-foil,false,,,"","",10519
 "Walk-In Closet // Forgotten Cellar",8,"Enchantment - Room",G,"dsk","205",mythic,Green,Not Owned,Non-foil,false,,,"","",130541
-"Invasion of Ikoria",2,"Battle - Siege",G,"mom","190",rare,Green,Not Owned,Non-foil,false,,,"","",110254
+"Channel",2,"Sorcery",G,"lea","186",uncommon,Green,Not Owned,Non-foil,false,,,"","",
 "Walking Ballista",0,"Artifact Creature - Construct",,"aer","181",rare,Colorless,Not Owned,Non-foil,false,,,"","",62561
 "Myr Battlesphere",7,"Artifact Creature - Myr Construct",,"som","180",rare,Colorless,Not Owned,Non-foil,false,,,"","",38307
 "Blightsteel Colossus",12,"Artifact Creature - Phyrexian Golem",,"mbs","99",mythic,Colorless,Not Owned,Non-foil,false,,,"","",39587
 "Emrakul, the Aeons Torn",15,"Legendary Creature - Eldrazi",,"roe","4",mythic,Colorless,Not Owned,Non-foil,false,,,"","",36396
-"Triplicate Titan",9,"Artifact Creature - Golem",,"plst","C21-79",rare,Colorless,Not Owned,Non-foil,false,,,"","",
+"The Endstone",7,"Artifact",,"fic","232",mythic,Colorless,Not Owned,Non-foil,false,,,"","",141399
 "Tezzeret, Cruel Captain",3,"Legendary Planeswalker - Tezzeret",,"eoe","2",mythic,Colorless,Not Owned,Non-foil,false,,,"","",142617
 "Karn, Scion of Urza",4,"Legendary Planeswalker - Karn",,"dom","1",mythic,Colorless,Not Owned,Non-foil,false,,,"","",67467
 "Ugin, Eye of the Storms",7,"Legendary Planeswalker - Ugin",,"tdm","1",mythic,Colorless,Not Owned,Non-foil,false,,,"","",138945
@@ -392,7 +392,7 @@ name,CMC,Type,Color,Set,Collector Number,Rarity,Color Category,status,Finish,may
 "Bloodbraid Challenger",5,"Creature - Elf Berserker",GR,"m3c","122",rare,Multicolored,Not Owned,Non-foil,false,,,"","",127443
 "Etali, Primal Conqueror",7,"Legendary Creature - Elder Dinosaur",GR,"mom","137",rare,Multicolored,Not Owned,Non-foil,false,,,"","",110122
 "Avacyn's Pilgrim",1,"Creature - Human Monk",GW,"isd","170",common,Multicolored,Not Owned,Non-foil,false,,,"","",42678
-"Qasali Pridemage",2,"Creature - Cat Wizard",GW,"arb","75",common,Multicolored,Not Owned,Non-foil,false,,,"","",32284
+"Brightglass Gearhulk",5,"Artifact Creature - Construct",GW,"fdn","215",mythic,Multicolored,Not Owned,Non-foil,false,,,"","",133934
 "Arwen, Mortal Queen",3,"Legendary Creature - Elf Noble",GW,"ltr","193",mythic,Multicolored,Not Owned,Non-foil,false,,,"","",112296
 "Knight of the Reliquary",3,"Creature - Human Knight",GW,"con","113",rare,Multicolored,Not Owned,Non-foil,false,,,"","",31925
 "Torsten, Founder of Benalia",7,"Legendary Creature - Human Soldier",GW,"dmc","47",mythic,Multicolored,Not Owned,Non-foil,false,,,"","",103536
@@ -447,7 +447,7 @@ name,CMC,Type,Color,Set,Collector Number,Rarity,Color Category,status,Finish,may
 "Tundra",0,"Land - Plains Island",UW,"lea","284",rare,Lands,Not Owned,Non-foil,false,,,"","",
 "Creeping Tar Pit",0,"Land",BU,"wwk","134",rare,Lands,Not Owned,Non-foil,false,,,"","",35657
 "Darkslick Shores",0,"Land",BU,"som","226",rare,Lands,Not Owned,Non-foil,false,,,"","",38291
-"Sunken Ruins",0,"Land",BU,"shm","280",rare,Lands,Not Owned,Non-foil,false,,,"","",29479
+"Mana Confluence",0,"Land",,"jou","163",rare,Lands,Not Owned,Non-foil,false,,,"","",55072
 "Undercity Sewers",0,"Land - Island Swamp",BU,"mkm","270",rare,Lands,Not Owned,Non-foil,false,,,"","",122032
 "Underground Sea",0,"Land - Island Swamp",BU,"lea","285",rare,Lands,Not Owned,Non-foil,false,,,"","",
 "Watery Grave",0,"Land - Island Swamp",BU,"rav","286",rare,Lands,Not Owned,Non-foil,false,,,"","",23586
@@ -492,7 +492,7 @@ name,CMC,Type,Color,Set,Collector Number,Rarity,Color Category,status,Finish,may
 "Tropical Island",0,"Land - Forest Island",GU,"lea","283",rare,Lands,Not Owned,Non-foil,false,,,"","",
 "Waterlogged Grove",0,"Land",GU,"mh1","249",rare,Lands,Not Owned,Non-foil,false,,,"","",72870
 "Spara's Headquarters",0,"Land - Forest Plains Island",GUW,"snc","257",rare,Lands,Not Owned,Non-foil,false,,,"","",98733
-"Tranquil Landscape",0,"Land",GUW,"mh3","231",common,Lands,Not Owned,Non-foil,false,,,"","",126481
+"Multiversal Passage",0,"Land",,"otj","265",uncommon,Lands,Not Owned,Non-foil,false,,,"","",124463
 "Raffine's Tower",0,"Land - Plains Island Swamp",BUW,"snc","254",rare,Lands,Not Owned,Non-foil,false,,,"","",98727
 "Xander's Lounge",0,"Land - Island Swamp Mountain",BRU,"snc","260",rare,Lands,Not Owned,Non-foil,false,,,"","",98739
 "Twisted Landscape",0,"Land",BGR,"mh3","232",common,Lands,Not Owned,Non-foil,false,,,"","",126483
